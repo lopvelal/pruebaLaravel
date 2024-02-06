@@ -1,0 +1,120 @@
+<div class="TaskDescription__StandardTaskDescription-sc-7m9k5q-3 fnOjGn"><h2 class="mod-hidden">Task description</h2><div class="TaskDescription__TaskContentWrapper-sc-7m9k5q-2 task-description-content">
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    
+    
+    <div class="brinza-task-description">
+    <p>You are given a blogging application in Laravel. Define the routes needed for the blog.</p>
+    <p>The application is split into two parts, for guests and for administrators, and contains the following functionalities:</p>
+    <p><b><u></u></b><u> For guests: <b></b></u></p>
+    <blockquote><ul style="margin: 10px;padding: 0px;"><li>Show a list of titles of the most recent posts</li>
+    <li>Show a single post</li>
+    </ul>
+    </blockquote><p><b><u></u></b><u> For administrators: <b></b></u></p>
+    <blockquote><ul style="margin: 10px;padding: 0px;"><li>Show a list of titles of the most recent posts with edit and delete buttons</li>
+    <li>Add a new post</li>
+    <li>Edit a post</li>
+    <li>Delete a post</li>
+    </ul>
+    </blockquote><p></p><h2>Requirements</h2>
+    <p></p>
+    <p>Your task is to create a full <tt style="white-space:pre-wrap">routes/web.php</tt> file. Assume that the rest of the application is fully implemented.</p>
+    <blockquote><ul style="margin: 10px;padding: 0px;"><li>The part for guests should be open to any user and should have no prefix</li>
+    <li>The part for administrators should be restricted to logged-in users, using Laravel's standard authentication, and should have an <tt style="white-space:pre-wrap">admin</tt> prefix</li>
+    </ul>
+    </blockquote><p><b><u></u></b><u> Correct HTTP methods should be used: <b></b></u></p>
+    <blockquote><ul style="margin: 10px;padding: 0px;"><li><i>get</i> to retrieve resources</li>
+    <li><i>post</i> to create resources</li>
+    <li><i>put</i> to update resources</li>
+    <li><i>delete</i> to remove resources</li>
+    </ul>
+    </blockquote><p><b><u></u></b><u> The routes should be named: <b></b></u></p>
+    <blockquote><ul style="margin: 10px;padding: 0px;"><li><tt style="white-space:pre-wrap">site.post.index</tt></li>
+    <li><tt style="white-space:pre-wrap">site.post.show</tt></li>
+    <li><tt style="white-space:pre-wrap">admin.post.index</tt></li>
+    <li><tt style="white-space:pre-wrap">admin.post.show</tt></li>
+    <li><tt style="white-space:pre-wrap">admin.post.store</tt></li>
+    <li><tt style="white-space:pre-wrap">admin.post.update</tt></li>
+    <li><tt style="white-space:pre-wrap">admin.post.delete</tt></li>
+    </ul>
+    </blockquote><p><b><u></u></b><u> The routes should point to the following URLs respectively: <b></b></u></p>
+    <blockquote><ul style="margin: 10px;padding: 0px;"><li><tt style="white-space:pre-wrap">/</tt></li>
+    <li><tt style="white-space:pre-wrap">/post/&lt;id&gt;</tt></li>
+    <li><tt style="white-space:pre-wrap">/admin/post</tt></li>
+    <li><tt style="white-space:pre-wrap">/admin/post/show/&lt;optional_id&gt;</tt></li>
+    <li><tt style="white-space:pre-wrap">/admin/post/store</tt></li>
+    <li><tt style="white-space:pre-wrap">/admin/post/update</tt></li>
+    <li><tt style="white-space:pre-wrap">/admin/post/delete/&lt;id&gt;</tt></li>
+    </ul>
+    </blockquote><p></p><h2>Existing files</h2>
+    <p></p>
+    <p><b><u></u></b><u>app/Http/Controllers/Site/PostController.php<b></b></u>:</p>
+    <tt style="white-space:pre-wrap">&lt;?php
+    <p>namespace App\Http\Controllers\Site;</p>
+    <p>/**</p>
+    </tt><ul><tt style="white-space:pre-wrap">
+    <li>
+    <p>Class PostController</p>
+    </li>
+    </tt><li><tt style="white-space:pre-wrap">
+    <p>@package App\Http\Controllers\Site
+    */
+    class PostController
+    {
+    public function index()
+    {
+    // Shows a list of titles of the most recent posts
+    }</p>
+    </tt><p><tt style="white-space:pre-wrap">public function show($id)
+    {
+    // Shows a single post
+    }
+    }</tt></p>
+    </li>
+    </ul>
+    <p><b><u></u></b><u>app/Http/Controllers/Admin/PostController.php<b></b></u>:</p>
+    <tt style="white-space:pre-wrap">&lt;?php
+    <p>namespace App\Http\Controllers\Admin;</p>
+    <p>/**</p>
+    </tt><ul><tt style="white-space:pre-wrap">
+    <li>
+    <p>Class HomeController</p>
+    </li>
+    </tt><li><tt style="white-space:pre-wrap">
+    <p>@package App\Http\Controllers\Admin
+    */
+    class PostController
+    {
+    public function index()
+    {
+    // Shows a list of titles of the most recent posts with edit and delete buttons
+    }</p>
+    <p>public function show($id = null)
+    {
+    // Shows a form filled with data for a single post or an empty form
+    }</p>
+    <p>public function store()
+    {
+    // Adds a new post
+    }</p>
+    <p>public function update()
+    {
+    // Edits a post
+    }</p>
+    </tt><p><tt style="white-space:pre-wrap">public function delete($id = null)
+    {
+    // Deletes a post
+    }
+    }</tt></p>
+    </li>
+    </ul>
+    <p></p><h2>Tools</h2>
+    <p></p>
+    <blockquote><ul style="margin: 10px;padding: 0px;"><li>The application uses <b><b></b>Laravel v10.2.2<b></b></b></li>
+    </ul>
+    </blockquote></div>
+    <div style="margin-top:5px">
+    <small>Copyright 2009–2024 by Codility Limited. All Rights Reserved. Unauthorized copying, publication or disclosure prohibited.</small>
+    </div>
+    
+    </div></div>

@@ -1,0 +1,129 @@
+<div class="FlexiblePanelArea-sc-xrt7fk-0 jyPTa-D" style="flex: 40 40 0px;"><div id="task" class="UntypedBox__Wrapper-sc-4e7tnk-0 guoFBE Floater-sc-vcx7dh-0 khmGRt help-tour-task-description"><div id="task_description" class="Tabs__Wrapper-sc-1wbc56k-0 htgfit LeftColumn__StyledTab-sc-1ldymr9-1"><div class="Tabs__Head-sc-1wbc56k-1 iBeESM"><div data-test-id="tab" class="Tab__Wrapper-sc-1d03zop-0 iyCzMi"><div class="Tab__NameWrapper-sc-1d03zop-1 icEVbs"><p aria-level="2" role="heading" class="text__P-sc-1rm5cia-1 bpxvAV specificity-increaser text__BasicText-sc-1rm5cia-4 jzDQhN">Task 3</p></div></div><div class="UntypedBox__Wrapper-sc-4e7tnk-0 fesEaE Tabs__WidgetsWrapper-sc-1wbc56k-3 dmrQEs"><div data-help="task-variants-wrapper" class="UntypedBox__Wrapper-sc-4e7tnk-0 ekvrbw"></div></div></div><div class="Tabs__Body-sc-1wbc56k-4 dobOou"><div class="UntypedBox__Wrapper-sc-4e7tnk-0 ekvrbw Floater-sc-vcx7dh-0 khmGRt TaskDescription__ThemedBox-sc-7m9k5q-0 ldKXQa"><div class="TaskDescription__ContentContainer-sc-7m9k5q-6 hcjSrL"><div class="TaskDescription__StandardTaskDescription-sc-7m9k5q-3 fnOjGn"><h2 class="mod-hidden">Task description</h2><div class="TaskDescription__TaskContentWrapper-sc-7m9k5q-2 task-description-content"><p>You are part of a team creating an IAM (Identity &amp; Access Management) solution. You have defined a table <code>UserRole</code> with the following structure:</p>
+    <pre><code class="language-sql">CREATE TABLE UserRole(
+        Id bigint NOT NULL AUTO_INCREMENT,
+        Name varchar(100) NOT NULL,
+        Description varchar(200) NULL,
+        IsEnabled bit NOT NULL, -- 1 if a role is enabled, 0 otherwise
+        Created date NOT NULL, -- When a role was created
+        CreatedBy varchar(200) NOT NULL, -- Who created a role
+        Updated date NULL, - When a role was updated (if at all)
+        UpdatedBy varchar(200) NULL, - Who updated a role (if at all)
+        CONSTRAINT PK_UserRole PRIMARY KEY ( Id ASC )
+    )
+    </code></pre>
+    <p>Your task is to write a SQL query (a report) that, for each user that <strong>has ever created</strong> a role, will return four values:</p>
+    <ul>
+    <li>User name in the <code>UserName</code> column;</li>
+    <li>Number of created roles in the <code>NoOfCreatedRoles</code> column;</li>
+    <li>Number of created roles that are enabled in the <code>NoOfCreatedAndEnabledRoles</code> column;</li>
+    <li>Number of updated roles in the <code>NoOfUpdatedRoles</code> column.</li>
+    </ul>
+    <p>Rows in the report should be sorted by user name in descending order. Additionally, user names should contain no leading or trailing white spaces and should be uppercase.</p>
+    <p>Your query should return no NULL values for numerical columns. Instead, NULL should be replaced with <em>-1</em>.
+    For example, it is possible that there are no roles updated by a given user, or that there are no roles created by a given user that are enabled.</p>
+    <p>You should also take into account that values in <code>CreatedBy</code> and <code>UpdatedBy</code> columns are not consistent:</p>
+    <ul>
+    <li>They can contain additional white spaces at the beginning or the end;</li>
+    <li>They can be written using a mixture of small and capital letters, e.g. <em>JOHN SMITH</em>, <em>john smith</em>.</li>
+    </ul>
+    <p>Here is an example. Let's assume that we have the following data in the table:</p>
+    <table border="1">
+    <thead>
+    <tr>
+    <th style="padding:2px">Id</th>
+    <th style="padding:2px">Name</th>
+    <th style="padding:2px">Description</th>
+    <th style="padding:2px">IsEnabled</th>
+    <th style="padding:2px">Created</th>
+    <th style="padding:2px">CreatedBy</th>
+    <th style="padding:2px">Updated</th>
+    <th style="padding:2px">UpdatedBy</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+    <td style="padding:2px">1</td>
+    <td style="padding:2px">Role_1</td>
+    <td style="padding:2px">NULL</td>
+    <td style="padding:2px">1</td>
+    <td style="padding:2px">2020-04-15 00:00:00.000</td>
+    <td style="padding:2px">Admin</td>
+    <td style="padding:2px">NULL</td>
+    <td style="padding:2px">NULL</td>
+    </tr>
+    <tr>
+    <td style="padding:2px">2</td>
+    <td style="padding:2px">Role_2</td>
+    <td style="padding:2px">Description</td>
+    <td style="padding:2px">1</td>
+    <td style="padding:2px">2020-04-16 00:00:00.000</td>
+    <td style="padding:2px">ADMIN</td>
+    <td style="padding:2px">2020-04-17 00:00:00.000</td>
+    <td style="padding:2px">John Smith</td>
+    </tr>
+    <tr>
+    <td style="padding:2px">3</td>
+    <td style="padding:2px">Role_3</td>
+    <td style="padding:2px">Description</td>
+    <td style="padding:2px">0</td>
+    <td style="padding:2px">2020-04-16 00:00:00.000</td>
+    <td style="padding:2px">John SMITH</td>
+    <td style="padding:2px">2020-04-17 00:00:00.000</td>
+    <td style="padding:2px">Ben SMITH</td>
+    </tr>
+    <tr>
+    <td style="padding:2px">4</td>
+    <td style="padding:2px">Role_4</td>
+    <td style="padding:2px">Description</td>
+    <td style="padding:2px">1</td>
+    <td style="padding:2px">2020-04-19 00:00:00.000</td>
+    <td style="padding:2px">bEn SmiTh            </td>
+    <td style="padding:2px">2020-04-21 00:00:00.000</td>
+    <td style="padding:2px">BEN SMITH</td>
+    </tr>
+    </tbody>
+    </table>
+    <p>For this data the report should look as follows:</p>
+    <table border="1">
+    <thead>
+    <tr>
+    <th style="padding:2px">UserName</th>
+    <th style="padding:2px">NoOfCreatedRoles</th>
+    <th style="padding:2px">NoOfCreatedAndEnabledRoles</th>
+    <th style="padding:2px">NoOfUpdatedRoles</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+    <td style="padding:2px">JOHN SMITH</td>
+    <td style="padding:2px">1</td>
+    <td style="padding:2px">-1</td>
+    <td style="padding:2px">1</td>
+    </tr>
+    <tr>
+    <td style="padding:2px">BEN SMITH</td>
+    <td style="padding:2px">1</td>
+    <td style="padding:2px">1</td>
+    <td style="padding:2px">2</td>
+    </tr>
+    <tr>
+    <td style="padding:2px">ADMIN</td>
+    <td style="padding:2px">2</td>
+    <td style="padding:2px">2</td>
+    <td style="padding:2px">-1</td>
+    </tr>
+    </tbody>
+    </table>
+    <p>Hints:</p>
+    <ul>
+    <li>You can assume that there is at least one role created by each user.</li>
+    <li>Your query will be executed against MySQL 8.0 database.</li>
+    <li>Pay attention to <em>Query_Can_Be_Executed_Without_Any_Error</em> test, which only validates if your query can be executed. If this test fails, it probably means that your query is not syntactically correct.</li>
+    </ul>
+    
+    <div style="margin-top:5px">
+    <small>
+    Copyright 2009–2024 by Codility Limited.
+    All Rights Reserved. Unauthorized copying, publication or disclosure prohibited.
+    </small>
+    </div></div></div></div></div></div></div><div id="test_cases_area" class="UntypedBox__Wrapper-sc-4e7tnk-0 ekvrbw"></div></div></div>
